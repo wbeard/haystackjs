@@ -18,7 +18,7 @@ export default {
        body: {
          message,
          meta: configuration.meta,
-         projectName: configuration.projectName
+         projectName: configuration.projectName,
          stacktrace: error.stack,
          token: configuration.token,
          userAgent

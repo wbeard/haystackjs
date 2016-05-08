@@ -10,7 +10,7 @@ export default {
     configuration = Object.assign(configuration, options);
   },
 
-  onWindowError(message, source, lineno, colno, error) {
+  onWindowError: function onWindowError(message, source, lineno, colno, error) {
     if (!configuration.token) {
       console.log('Whoops! Looks like you imported the script but did\'t configure it with a token.');
       console.log('Try Haystack.configure({ token: <Your given token>, projectName: "Error free project" });');
@@ -41,5 +41,12 @@ export default {
     }).catch(function(err) {
     	console.log('Error trying to talk to haystack servers');
     });
+  },
+
+  testError() {
+    const err = new Error('Haystack test error');
+    err.stack = 'Here is a super legit stacktrace';
+    
+    onWindowError('Howdy! Here is a test error', null, null, null, err);
   }
 };

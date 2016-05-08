@@ -76,6 +76,8 @@
 	  configure: function configure(options) {
 	    configuration = Object.assign(configuration, options);
 	  },
+
+
 	  onWindowError: function onWindowError(message, source, lineno, colno, error) {
 	    if (!configuration.token) {
 	      console.log('Whoops! Looks like you imported the script but did\'t configure it with a token.');
@@ -107,6 +109,13 @@
 	    }).catch(function (err) {
 	      console.log('Error trying to talk to haystack servers');
 	    });
+	  },
+
+	  testError: function testError() {
+	    var err = new Error('Haystack test error');
+	    err.stack = 'Here is a super legit stacktrace';
+
+	    onWindowError('Howdy! Here is a test error', null, null, null, err);
 	  }
 	};
 

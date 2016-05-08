@@ -83,7 +83,7 @@
 	      throw new Error('Haystack not configured with a token.');
 	    }
 
-	    if (!configuratino.projectName) {
+	    if (!configuration.projectName) {
 	      console.log('Whoops! Looks like you imported the script but did\'t configure it with a projectName.');
 	      console.log('Try Haystack.configure({ token: <Your given token>, projectName: "Error free project" });');
 	      throw new Error('Haystack not configured with a projectName.');

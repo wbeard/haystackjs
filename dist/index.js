@@ -78,9 +78,15 @@
 	  },
 	  onWindowError: function onWindowError(message, source, lineno, colno, error) {
 	    if (!configuration.token) {
-	      console.log('Whoops! Looks like you imported the script but did\'t configure it.');
-	      console.log('Try Haystack.configure({ token: <Your given token> });');
+	      console.log('Whoops! Looks like you imported the script but did\'t configure it with a token.');
+	      console.log('Try Haystack.configure({ token: <Your given token>, projectName: "Error free project" });');
 	      throw new Error('Haystack not configured with a token.');
+	    }
+
+	    if (!configuratino.projectName) {
+	      console.log('Whoops! Looks like you imported the script but did\'t configure it with a projectName.');
+	      console.log('Try Haystack.configure({ token: <Your given token>, projectName: "Error free project" });');
+	      throw new Error('Haystack not configured with a projectName.');
 	    }
 
 	    fetch(BASE_URL + '/errors', {

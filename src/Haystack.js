@@ -1,7 +1,6 @@
-const BASE_URL = 'https://haystack-api.herokuapp.com';
+const BASE_URL = 'http://localhost:5000';
 let configuration = {
   token: null,
-  meta: {},
   projectName: null
 };
 const userAgent = window.navigator.userAgent;
@@ -12,17 +11,31 @@ export default {
   },
 
   onWindowError(message, source, lineno, colno, error) {
+    if (!configuration.token) {
+      console.log('Whoops! Looks like you imported the script but did\'t configure it with a token.');
+      console.log('Try Haystack.configure({ token: <Your given token>, projectName: "Error free project" });');
+      throw new Error('Haystack not configured with a token.');
+    }
+
+    if (!configuratino.projectName) {
+      console.log('Whoops! Looks like you imported the script but did\'t configure it with a projectName.');
+      console.log('Try Haystack.configure({ token: <Your given token>, projectName: "Error free project" });');
+      throw new Error('Haystack not configured with a projectName.');
+    }
+
     fetch(`${BASE_URL}/errors`, {
 	     method: 'post',
-       mode: 'cors',
-       body: {
+       headers: {
+         'Access-Control-Allow-Origin': '*',
+         'Content-Type': 'application/json',
+       },
+       body: JSON.stringify({
          message,
-         meta: configuration.meta,
          projectName: configuration.projectName,
          stacktrace: error.stack,
          token: configuration.token,
          userAgent
-       }
+       })
     }).then(function(response) {
       console.log('Error logging worked!');
     }).catch(function(err) {

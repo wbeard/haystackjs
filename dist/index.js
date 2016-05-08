@@ -65,10 +65,9 @@
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-	var BASE_URL = 'https://haystack-api.herokuapp.com';
+	var BASE_URL = 'http://localhost:5000';
 	var configuration = {
 	  token: null,
-	  meta: {},
 	  projectName: null
 	};
 	var userAgent = window.navigator.userAgent;
@@ -78,17 +77,25 @@
 	    configuration = Object.assign(configuration, options);
 	  },
 	  onWindowError: function onWindowError(message, source, lineno, colno, error) {
+	    if (!configuration.token) {
+	      console.log('Whoops! Looks like you imported the script but did\'t configure it.');
+	      console.log('Try Haystack.configure({ token: <Your given token> });');
+	      throw new Error('Haystack not configured with a token.');
+	    }
+
 	    fetch(BASE_URL + '/errors', {
 	      method: 'post',
-	      mode: 'cors',
-	      body: {
+	      headers: {
+	        'Access-Control-Allow-Origin': '*',
+	        'Content-Type': 'application/json'
+	      },
+	      body: JSON.stringify({
 	        message: message,
-	        meta: configuration.meta,
 	        projectName: configuration.projectName,
 	        stacktrace: error.stack,
 	        token: configuration.token,
 	        userAgent: userAgent
-	      }
+	      })
 	    }).then(function (response) {
 	      console.log('Error logging worked!');
 	    }).catch(function (err) {

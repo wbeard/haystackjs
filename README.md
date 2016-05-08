@@ -20,6 +20,7 @@ npm install --save haystackjs
 </script>
 <script>
   Haystack.configure({
+    projectName: 'Name of your awesome project',
     token: <Your given token>
   });
 </script>

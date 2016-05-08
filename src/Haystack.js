@@ -1,7 +1,8 @@
 const BASE_URL = 'https://haystack-api.herokuapp.com';
 let configuration = {
   token: null,
-  meta: {}
+  meta: {},
+  projectName: null
 };
 const userAgent = window.navigator.userAgent;
 
@@ -17,6 +18,7 @@ export default {
        body: {
          message,
          meta: configuration.meta,
+         projectName: configuration.projectName
          stacktrace: error.stack,
          token: configuration.token,
          userAgent

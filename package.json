@@ -1,7 +1,7 @@
 {
   "name": "haystackjs",
-  "version": "0.0.14",
-  "description": "A JavaScript binding for haystack.cd",
+  "version": "0.0.15",
+  "description": "A JavaScript binding for gethaystack.co",
   "main": "dist/index.js",
   "dependencies": {
     "webpack": "^1.13.0"

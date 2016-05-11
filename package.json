@@ -1,6 +1,6 @@
 {
   "name": "haystackjs",
-  "version": "0.0.18",
+  "version": "0.0.19",
   "description": "A JavaScript binding for gethaystack.co",
   "main": "dist/index.js",
   "dependencies": {

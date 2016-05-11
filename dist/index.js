@@ -65,7 +65,7 @@
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-	var BASE_URL = 'http://localhost:5000';
+	var BASE_URL = 'https://haystack-api.herokuapp.com';
 	var configuration = {
 	  token: null,
 	  projectName: null

@@ -9,5 +9,5 @@ PACKAGE_VERSION=$(cat package.json \
 
 git add .
 git commit -m "Version bump ${PACKAGE_VERSION}"
-git tag -a v$PACKAGE_VERSION
+git tag -a v$PACKAGE_VERSION -m "Bumping to ${PACKAGE_VERSION}"
 git push origin v$PACKAGE_VERSION

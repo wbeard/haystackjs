@@ -1,0 +1,50 @@
+#!/usr/bin/env node
+
+var program = require('commander')
+var jsonfile = require('jsonfile')
+jsonfile.spaces = 4;
+
+program
+.version('0.0.1')
+.option('-M, --major', 'Major version bump')
+.option('-m, --minor', 'Minor version bump')
+.option('-p, --patch', 'Patch version bump')
+.parse(process.argv)
+
+if (!program.major || !program.minor || !program.patch) {
+  program.patch = true;
+}
+
+jsonfile.readFile('../package.json', function(err, packageJson) {
+  if (err) {
+    console.log('Error reading file', err.message);
+  }
+
+  var currentVersion = packageJson.version;
+  var currentVersions = currentVersion.split('.');
+
+  if(program.major) {
+    currentVersions[0] = Number(currentVersions[0]) + 1
+  }
+
+  if(program.minor) {
+    currentVersions[1] = Number(currentVersions[1]) + 1
+  }
+
+  if(program.patch) {
+    currentVersions[2] = Number(currentVersions[2]) + 1
+  }
+
+  var newVersion = currentVersions.join('.');
+
+  packageJson.version = newVersion;
+
+  jsonfile.writeFile('./package.json', packageJson, function(err) {
+    if (err) {
+      console.log('There was an error writing package.json');
+      process.exit(1);
+    }
+
+    console.log('Updated package.json to ',  newVersion);
+  });
+});

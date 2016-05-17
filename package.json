@@ -1,6 +1,6 @@
 {
     "name": "haystackjs",
-    "version": "0.0.21",
+    "version": "0.0.19",
     "description": "A JavaScript binding for gethaystack.co",
     "main": "dist/index.js",
     "dependencies": {
@@ -16,7 +16,10 @@
     },
     "scripts": {
         "build": "./node_modules/.bin/webpack",
-        "test": "./node_modules/.bin/mocha --compilers js:babel-register"
+        "test": "./node_modules/.bin/mocha --compilers js:babel-register",
+        "prepublish": "npm run build",
+        "upload": "./bin/upload",
+        "version": "./bin/bump_version && ./bin/add_commit_tag_push && npm publish && npm run upload"
     },
     "repository": {
         "type": "git",

@@ -39,6 +39,10 @@ jsonfile.readFile('../package.json', function(err, packageJson) {
 
   packageJson.version = newVersion;
 
+  console.log(packageJson);
+
+  process.exit(0);
+
   jsonfile.writeFile('./package.json', packageJson, function(err) {
     if (err) {
       console.log('There was an error writing package.json');

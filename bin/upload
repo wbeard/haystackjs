@@ -2,7 +2,7 @@
 
 var Client = require('ftp');
 var fs = require('fs');
-
+var jsonfile = require('jsonfile');
 var ftpClient = new Client();
 
 

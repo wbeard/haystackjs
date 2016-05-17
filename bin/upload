@@ -14,11 +14,18 @@ ftpClient.on('ready', function() {
       throw err;
     }
 
-    ftpClient.put('dist/index.js', 'haystackjs/' + packageJson.version + '/haystack.js', function(err) {
+    ftpClient.mkdir('haystackjs/' + packageJson.version, function(err) {
       if (err) {
         throw err;
       }
-      ftpClient.end();
+      
+      ftpClient.put('dist/index.js', 'haystackjs/' + packageJson.version + '/haystack.js', function(err) {
+        if (err) {
+          throw err;
+        }
+
+        ftpClient.end();
+      });
     });
   });
 })

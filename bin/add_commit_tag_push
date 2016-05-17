@@ -1,0 +1,14 @@
+#!/bin/bash -el
+
+# Version key/value should be on his own line
+PACKAGE_VERSION=$(cat package.json \
+  | grep version \
+  | head -1 \
+  | awk -F: '{ print $2 }' \
+  | sed 's/[",]//g' \
+  | sed 's/^[ \t]*//')
+
+git add .
+git commit -m "Version bump ${PACKAGE_VERSION}"
+git tag -a "v$PACKAGE_VERSION" -m "Bumping to ${PACKAGE_VERSION}"
+git push origin v$PACKAGE_VERSION

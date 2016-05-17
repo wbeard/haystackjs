@@ -5,7 +5,8 @@ PACKAGE_VERSION=$(cat package.json \
   | grep version \
   | head -1 \
   | awk -F: '{ print $2 }' \
-  | sed 's/[",]//g')
+  | sed 's/[",]//g' \
+  | sed 's/^[ \t]*//')
 
 git add .
 git commit -m "Version bump ${PACKAGE_VERSION}"

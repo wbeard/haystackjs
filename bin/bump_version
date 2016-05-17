@@ -15,7 +15,7 @@ if (!program.major || !program.minor || !program.patch) {
   program.patch = true;
 }
 
-jsonfile.readFile('../package.json', function(err, packageJson) {
+jsonfile.readFile('./package.json', function(err, packageJson) {
   if (err) {
     console.log('Error reading file', err.message);
   }

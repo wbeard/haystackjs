@@ -1,0 +1,30 @@
+#!/usr/bin/env node
+
+var Client = require('ftp');
+var fs = require('fs');
+
+var ftpClient = new Client();
+
+
+
+ftpClient.on('ready', function() {
+  jsonfile.readFile('../package.json', function(err, packageJson) {
+    if (err) {
+      console.log('Error reading file', err.message);
+      throw err;
+    }
+
+    ftpClient.put('dist/index.js', 'haystackjs/' + packageJson.version + '/haystack.js', function(err) {
+      if (err) {
+        throw err;
+      }
+      ftpClient.end();
+    });
+  });
+})
+
+ftpClient.connect({
+  host: '192.138.189.60',
+  user: 'assets@gethaystack.co',
+  password: '11NeedleStackHay!@'
+})

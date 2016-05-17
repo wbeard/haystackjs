@@ -18,12 +18,14 @@ ftpClient.on('ready', function() {
       if (err) {
         throw err;
       }
-      
+
+      console.log('Successfully created new folder for version: ', packageJson.version);
       ftpClient.put('dist/index.js', 'haystackjs/' + packageJson.version + '/haystack.js', function(err) {
         if (err) {
           throw err;
         }
 
+        console.log('Successfully uploaded file');
         ftpClient.end();
       });
     });

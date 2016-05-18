@@ -8,12 +8,13 @@ var ftpClient = new Client();
 
 
 ftpClient.on('ready', function() {
-  jsonfile.readFile('../package.json', function(err, packageJson) {
+  jsonfile.readFile('./package.json', function(err, packageJson) {
     if (err) {
       console.log('Error reading file', err.message);
       throw err;
     }
 
+    console.log(packageJson);
     ftpClient.mkdir('haystackjs/' + packageJson.version, function(err) {
       if (err) {
         throw err;

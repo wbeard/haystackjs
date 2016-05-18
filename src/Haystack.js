@@ -1,4 +1,4 @@
-const BASE_URL = 'https://haystack-api.herokuapp.com';
+const BASE_URL = 'https://api.gethaystack.co';
 let configuration = {
   token: null,
   projectName: null
